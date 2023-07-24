@@ -25,7 +25,7 @@ Then trying to deploy the contracts with
 npx hardhat --network sepolia deploy --contract Registry
 ```
 
-I obtain [this error](https://app.warp.dev/block/eiONvr5ZiywzTkjQ0CW9kE).
+I obtain [this error](https://app.warp.dev/block/eiONvr5ZiywzTkjQ0CW9kE). I am not worried about `WARNING: You are currently using Node.js v14.21.3` but the error that follows line 5.
 
 [^nvm-version]: The version number `v0.33.6` is somewhat arbitrary, but some of the higher version numbers do not give me a set-up that allows for `npm run compile`.
 
