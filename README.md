@@ -18,6 +18,13 @@ npm i
 npm run compile
 ```
 
+Then trying to deploy the contracts with
+
+```
+npx hardhat --network sepolia deploy --contract Registry
+```
+
+I obtain [this error](https://app.warp.dev/block/eiONvr5ZiywzTkjQ0CW9kE).
 
 [^error]: On my machine, without `nvm install 14` I get an error message after `npm run compile`:
 
