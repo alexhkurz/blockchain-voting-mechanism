@@ -4,7 +4,7 @@ Based on a [course](https://github.com/alexhkurz/introduction-to-smart-contracts
 
 ## Installation and Deployment
 
-My local setup consists of [^nvm-version]
+My local setup consists of [^nvm-version] [^local-setup]
 
 ```
 rm -rf ~/.npm
@@ -28,6 +28,8 @@ npx hardhat --network sepolia deploy --contract Registry
 I obtain [this error](https://app.warp.dev/block/eiONvr5ZiywzTkjQ0CW9kE). I am not worried about `WARNING: You are currently using Node.js v14.21.3` but the error that follows line 5.
 
 [^nvm-version]: The version number `v0.33.6` is somewhat arbitrary, but some of the higher version numbers do not give me a set-up that allows for `npm run compile`.
+
+[^local-setup]: It is difficult to get a reproducible local setup. Some attempts are logged [here](https://hackmd.io/@alexhkurz/B1b4ATDc3).
 
 [^error]: On my machine, without `nvm install 14` I get an error message after `npm run compile`:
 
