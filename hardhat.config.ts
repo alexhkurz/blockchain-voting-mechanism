@@ -56,7 +56,7 @@ module.exports = {
       accounts: [process.env.GOERLI_PRIVATE_KEY],
     },
     sepolia: {
-      url: `https://rpc.sepolia.org`,
+      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
       chainId: 11155111,
       accounts: [process.env.SEPOLIA_PRIVATE_KEY],
     },
