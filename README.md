@@ -1,10 +1,10 @@
 # README
 
-Based on a [course]() at Chapman University Spring 2023 as a section of CPSC 298.
+Based on a [course](https://github.com/alexhkurz/introduction-to-smart-contracts) at Chapman University Spring 2023 as a section of CPSC 298.
 
 ## Required Steps for Deployment
 
-My local setup consists of[^error]
+My local setup consists of [^error]
 
 ```
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
@@ -35,8 +35,8 @@ npm run compile
     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
     at internal/main/run_main_module.js:17:47
     ```
-    
-    or also
+
+    or also (depending on circumstances I dont understand)
     
     ```
     > smartcontractframework@1.0.0 compile
@@ -46,8 +46,7 @@ npm run compile
     
     /Users/alexanderkurz/alexhkurz-at-github/isc-test-5b/node_modules/hardhat/internal/cli/cli.js:66
         const viaIREnabled = configuredCompilers.some((compiler) => compiler.settings?.viaIR ===     true);
-                                                                                      ^
-    
+                                                                                      ^   
     SyntaxError: Unexpected token '.'
         at Object.compileFunction (vm.js:344:18)
         at wrapSafe (internal/modules/cjs/loader.js:1048:15)
