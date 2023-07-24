@@ -17,7 +17,7 @@ npm run compile
 
 ### Deployment
 
-The contract available at https://sepolia.etherscan.io/address/0xDe8890652A36bcFB6F2C90cbEC6d12aCfD57Ba5F#code was deployed as follows.
+The contracts available [here](https://sepolia.etherscan.io/address/0xDe8890652A36bcFB6F2C90cbEC6d12aCfD57Ba5F#code) were deployed as follows.
 
 ```
 npx hardhat --network sepolia deploy --contract Registry
