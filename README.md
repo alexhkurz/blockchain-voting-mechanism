@@ -2,18 +2,19 @@
 
 Based on a [course](https://github.com/alexhkurz/introduction-to-smart-contracts) at Chapman University Spring 2023 as a section of CPSC 298.
 
-## Required Steps for Deployment
+## Installation and Deployment
 
-My local setup consists of [^error]
+My local setup consists of [^nvm-version]
 
 ```
+rm -rf ~/.npm
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+```
+
+After cloning this directory, I run [^error]
+
+```
 nvm install 14
-```
-
-After cloning this directory, I run 
-
-```
 npm i 
 npm run compile
 ```
@@ -25,6 +26,8 @@ npx hardhat --network sepolia deploy --contract Registry
 ```
 
 I obtain [this error](https://app.warp.dev/block/eiONvr5ZiywzTkjQ0CW9kE).
+
+[^nvm-version]: The version number `v0.33.6` is somewhat arbitrary, but some of the higher version numbers do not give me a set-up that allows for `npm run compile`.
 
 [^error]: On my machine, without `nvm install 14` I get an error message after `npm run compile`:
 
