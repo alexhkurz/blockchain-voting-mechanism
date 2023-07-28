@@ -46,6 +46,8 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "forge": "^2.3.0",
+    "install": "^0.13.0",
     "npm": "^9.8.1"
   }
 }
