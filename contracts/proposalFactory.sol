@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
-import "./proposal.sol";
+import "./Proposal.sol";
 
 contract ProposalFactory{
     Proposal[] public proposals;
