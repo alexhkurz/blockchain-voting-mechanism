@@ -1,25 +1,13 @@
-# README
+# Sample Hardhat Project
 
-Set-up based on a [course](https://github.com/alexhkurz/introduction-to-smart-contracts) at Chapman University Spring 2023.
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-### Installation
+Try running some of the following tasks:
 
-```
-npm i 
-forge install
-```
-
-### Compilation
-
-```
-npm run compile
-```
-
-### Deployment
-
-The contracts available [here](https://sepolia.etherscan.io/address/0xDe8890652A36bcFB6F2C90cbEC6d12aCfD57Ba5F#code) were deployed as follows.
-
-```
-npx hardhat --network sepolia deploy --contract Registry
-npx hardhat --network sepolia verify 0xDe8890652A36bcFB6F2C90cbEC6d12aCfD57Ba5F
+```shell
+npx hardhat help
+npx hardhat test
+REPORT_GAS=true npx hardhat test
+npx hardhat node
+npx hardhat run scripts/deploy.js
 ```

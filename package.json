@@ -1,53 +1,30 @@
 {
-  "name": "smartcontractframework",
+  "name": "blockchain-voting-mechanism-wb",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is a voting system implimentation based on the block chain",
+  "main": "index.js",
   "scripts": {
-    "compile": "hardhat compile",
-    "clean": "hardhat clean",
-    "test": "forge test -vvv"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WunderBear",
+  "license": "MIT",
+  "devDependencies": {
+    "hardhat": "^2.17.1"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@openzeppelin/contracts": "^4.9.3",
+    "@openzeppelin/contracts-upgradeable": "^4.9.3"
+  },
+  "directories": {
+    "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/Crypteriat/examples/smartcontractframework.git"
+    "url": "git+https://github.com/alexhkurz/blockchain-voting-mechanism.git#dev-wb"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/Crypteriat/examples/smartcontractframework/issues"
+    "url": "https://github.com/alexhkurz/blockchain-voting-mechanism/issues"
   },
-  "homepage": "https://gitlab.com/Crypteriat/examples/smartcontractframework#readme",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.5",
-    "@openzeppelin/hardhat-upgrades": "^1.22.1",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "@types/chai": "^4.3.4",
-    "@types/dotenv": "^8.2.0",
-    "@types/mocha": "^10.0.1",
-    "chai": "^4.3.7",
-    "dotenv": "^16.0.3",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.12.6",
-    "hardhat-abi-exporter": "^2.10.1",
-    "hardhat-contract-sizer": "^2.7.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "hardhat-preprocessor": "^0.1.5",
-    "hardhat-watcher": "^2.5.0",
-    "prettier": "^2.8.3",
-    "prettier-plugin-solidity": "^1.1.1",
-    "solidity-coverage": "^0.7.22",
-    "ts-node": "^10.9.1",
-    "typechain": "^8.1.1",
-    "typescript": "^4.9.4"
-  },
-  "dependencies": {
-    "forge": "^2.3.0",
-    "install": "^0.13.0",
-    "npm": "^9.8.1"
-  }
+  "homepage": "https://github.com/alexhkurz/blockchain-voting-mechanism/tree/dev-wb#readme"
 }
