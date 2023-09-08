@@ -15,3 +15,4 @@ coverage.json
 .next/
 .env
 typechain-types/
+.aider*
