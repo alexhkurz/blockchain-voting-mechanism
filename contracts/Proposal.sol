@@ -18,7 +18,8 @@ contract Proposal {
         description = _proposalDescription;
     }
 
-    receive() external payable{ // recieve votes from user
+    // Here votes are represented by the amount of Ether sent
+    receive() external payable{ // receive votes from user
         userBalance[msg.sender] += msg.value;
     }
 
