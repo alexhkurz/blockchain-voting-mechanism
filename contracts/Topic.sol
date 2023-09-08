@@ -71,7 +71,7 @@ contract Topic is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, Pau
     function initialize(string memory _title,string memory _description) initializer internal {
         title = _title;
         description = _description;
-        __ERC20_init(string.concat(_title,"_VoteToken"), string.concat(_title,"_VT"));// VT = VoteToken
+        __ERC20_init(string(abi.encodePacked(_title,"_VoteToken")), string(abi.encodePacked(_title,"_VT")));// VT = VoteToken
         __ERC20Burnable_init();
         __Pausable_init();
         __Ownable_init();
