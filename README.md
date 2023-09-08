@@ -1,6 +1,8 @@
 # README
 
-Set-up based on a [course](https://github.com/alexhkurz/introduction-to-smart-contracts) at Chapman University Spring 2023.
+https://github.com/alexhkurz/blockchain-voting-mechanism 
+
+Based on the set-up from a [course](https://github.com/alexhkurz/introduction-to-smart-contracts) at Chapman University Spring 2023.
 
 ### Installation
 
