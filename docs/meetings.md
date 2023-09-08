@@ -1,4 +1,6 @@
-# 09/07/23
+# Meetings
+
+## 09/07/23
 ### Meeting Recap
 - We were able to get back on track after a break.
 ### What worked

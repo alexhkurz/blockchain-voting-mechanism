@@ -50,20 +50,10 @@ module.exports = {
     localhost: {
       gasPrice: 0,
     },
-    goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
-      chainId: 5,
-      accounts: [process.env.GOERLI_PRIVATE_KEY],
-    },
     sepolia: {
       url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
       chainId: 11155111,
       accounts: [process.env.SEPOLIA_PRIVATE_KEY],
-    },
-    mordor: {
-      url: 'https://www.ethercluster.com/mordor',
-      chainId: 63,
-      accounts: [process.env.MORDOR_PRIVATE_KEY],
     },
   },
   etherscan: {
