@@ -25,3 +25,7 @@ The contracts available [here](https://sepolia.etherscan.io/address/0xDe8890652A
 npx hardhat --network sepolia deploy --contract Registry
 npx hardhat --network sepolia verify 0xDe8890652A36bcFB6F2C90cbEC6d12aCfD57Ba5F
 ```
+
+## Further Reading
+
+https://medium.com/paratii/delegating-votes-to-overcome-the-vote-splitting-problem-in-tcrs-c47d930c4dd7
