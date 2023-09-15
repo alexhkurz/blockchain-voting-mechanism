@@ -9,11 +9,11 @@ Persons are able to interact with each proposal (can take back tokens, etc).
 Every topic has its own token.
 
 - Topic.sol
-    - create topic
+    - create topic ...
     - `makeNewProposal()`
     - `requestToken()` getting the initial amount of token
     - `receive()` proposal receives votes from user
-    - `initialize()`
+    - `initialize()` ...
     - `withdraw()` get tokens back from a proposal 
     - ...
 
