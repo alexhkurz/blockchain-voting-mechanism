@@ -23,7 +23,7 @@ contract Topic is ERC20, Ownable {
     
     //proposal stuff
     function makeNewProposal(string memory _name,string memory _description)public returns (address){
-        Proposal newProposal = new Proposal(_name,_description);
+        Proposal newProposal = new Proposal(_name,_description,this.address);
         proposals[address(newProposal)] = newProposal;
         listOfProposalAddresses.push(address(newProposal));
         return address(newProposal);
@@ -36,7 +36,7 @@ contract Topic is ERC20, Ownable {
     //proposal transaction stuff
     function withdrawFromProposal(address proposalAddr,uint _amount) public {
         require(proposals[proposalAddr].getUserBalence() > 0, "can't take nothing");
-        proposals[proposalAddr].withdraw(address(this),_amount);
+        proposals[proposalAddr].withdraw(_amount);
     }
 
     function requestToken() isNewVoter public {

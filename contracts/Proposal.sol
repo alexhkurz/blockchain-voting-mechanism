@@ -3,18 +3,19 @@ pragma solidity ^0.8.9;
 
 import "contracts/Imports.sol";
 
-
 contract Proposal {
     address creator;
     string title;
     string description;
+    address topicAddress;
     int goal;//used if the solution wants people to send in money
     mapping(address => uint) public userBalance;
 
-    constructor(string memory _proposalTitle, string memory _proposalDescription){
+    constructor(string memory _proposalTitle, string memory _proposalDescription,_topicAddress){
         creator = msg.sender;
         title = _proposalTitle;
         description = _proposalDescription;
+        topicAddress = _topicAddress;
     }
 
     receive() external payable{ // recieve votes from user
@@ -33,12 +34,11 @@ contract Proposal {
         return userBalance[msg.sender];
     }
     
-    function withdraw(address _tokenAddress, uint _amount) external returns(uint){// returns user balance
+    function withdraw(uint _amount) external returns(uint){// returns user balance
         require(userBalance[msg.sender] >= _amount, "can't withdraw more then you have");
-        IERC20 tokenContract = IERC20(_tokenAddress);
+        IERC20 tokenContract = IERC20(topicAddress);
+        tokenContract.transfer(msg.sender,_amount);
         userBalance[msg.sender] -= _amount;
-       // tokenContract.transfer(msg.sender,_amount);
-        IERC20(tokenContract).transferFrom(msg.sender, address(this), _amount);
         return userBalance[msg.sender];
     }
 
