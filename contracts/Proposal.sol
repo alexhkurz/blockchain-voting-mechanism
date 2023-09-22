@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-interface IERC20 {
-    function transfer(address _to, uint256 _amount) external returns (bool);
-}
+import "contracts/Imports.sol";
+
 
 contract Proposal {
     address creator;
@@ -38,7 +37,8 @@ contract Proposal {
         require(userBalance[msg.sender] >= _amount, "can't withdraw more then you have");
         IERC20 tokenContract = IERC20(_tokenAddress);
         userBalance[msg.sender] -= _amount;
-        tokenContract.transfer(msg.sender,_amount);
+       // tokenContract.transfer(msg.sender,_amount);
+        IERC20(tokenContract).transferFrom(msg.sender, address(this), _amount);
         return userBalance[msg.sender];
     }
 
