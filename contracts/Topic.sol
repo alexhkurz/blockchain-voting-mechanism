@@ -36,7 +36,7 @@ contract Topic is ERC20, Ownable {
     //proposal transaction stuff
     function withdrawFromProposal(address proposalAddr,uint _amount) public {
         require(proposals[proposalAddr].getUserBalence() > 0, "can't take nothing");
-        proposals[proposalAddr].withdraw(_amount);
+        proposals[proposalAddr].withdraw(address(this),msg.sender,_amount);
     }
 
     function requestToken() isNewVoter public {
@@ -44,7 +44,7 @@ contract Topic is ERC20, Ownable {
         _mint(msg.sender,5);
     }
 
-    function mint(address to, uint256 amount) public isNewVoter {
+    function mint(address to, uint256 amount) private isNewVoter {
         _mint(to, amount);
     }
     modifier isNewVoter {

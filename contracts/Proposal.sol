@@ -34,10 +34,10 @@ contract Proposal {
         return userBalance[msg.sender];
     }
     
-    function withdraw(uint _amount) external returns(uint){// returns user balance
+    function withdraw(address _topicAddress, address _sender, uint _amount) external returns(uint){// returns user balance
         require(userBalance[msg.sender] >= _amount, "can't withdraw more then you have");
         IERC20 tokenContract = IERC20(topicAddress);
-        tokenContract.transfer(msg.sender,_amount);
+        tokenContract.transferFrom(address(this),_sender,_amount);
         userBalance[msg.sender] -= _amount;
         return userBalance[msg.sender];
     }

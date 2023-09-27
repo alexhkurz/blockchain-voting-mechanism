@@ -18,7 +18,53 @@ withdrawFromProposal passes an amount to the proposal and calls the proposals wi
 
 *note: we have proposals as seperate contracts instead of integrated with the main contract as we want the ability for future things to be done with the smart contract, ie it acting as a typical smart contract that will act in a way once conditions are fulfilled. Also modularity. 
 
+Funciton by function workings: 
 
+ function makeNewProposal
+    takes: string memory _name,string memory _description
+    creates a new proposaland appends its address to the map of addresses and proposals, saves its address in a list of addresses.
+    returns the address of the created proposal.
+    
+    
+function getallProposals() 
+no inputs,
+returns listOfProposalAddresses
+
+    function withdrawFromProposal
+    takes: address proposalAddr,uint _amount
+    Specifics: requires that a user has sent token to a proposal in order to take it out
+    Withdraws from the proposal, and sends to user
+       calls proposals[proposalAddr].withdraw(topicAddress, msg sender, amount requesting to withdraw);
+    returns: nothing
+
+function requestToken() isNewVoter
+    no inputs
+    checks that the message sender has not requested before
+    adds user to list of requested people
+    mints 5 new token
+    no returns
+
+
+function mint(address to, uint256 amount) private isNewVoter 
+Standard ledzepplin mint, requireing that the person is a new ver
+no returns, private
+
+
+modifier isNewVoter 
+requires that msg.sender is not in the list of people who have voted
+
+Proposal functions
+ 
+receive() external payable
+    no inputs
+    uses premade implimentation of recieve, incriments user balance
+    no returns
+
+function withdraw
+inputs: address _topicAddress, address _sender, uint _amount
+    requires user balance to be >= amount invested   
+    uses openzepplin token transfer
+    returns post withdrawal userBalance[msg.sender];
 
 
 
