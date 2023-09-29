@@ -1,31 +1,37 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+// 1st import as follows
 import "contracts/Imports.sol";
 
 contract Proposal {
     address creator;
     string title;
     string description;
-    address topicAddress;
-    int goal;//used if the solution wants people to send in money
+
+    TopicToken token;
+
+    uint goal;//used if the solution wants people to send in money
     mapping(address => uint) public userBalance;
 
-    constructor(string memory _proposalTitle, string memory _proposalDescription,_topicAddress){
+    constructor(string memory _proposalTitle, string memory _proposalDescription, TopicToken _token){
         creator = msg.sender;
         title = _proposalTitle;
         description = _proposalDescription;
-        topicAddress = _topicAddress;
+        token = _token;
     }
 
     receive() external payable{ // recieve votes from user
         userBalance[msg.sender] += msg.value;
+        console.log("recieved token: ");
+        console.log(msg.value);
     }
 
     modifier onlyOwner(){ // only owner can access function
         require(creator == msg.sender, "not owner");
         _;
     }
+
     function getTotalBalence() public view returns(uint){// returns total balance
         return address(this).balance;
     }
@@ -34,11 +40,12 @@ contract Proposal {
         return userBalance[msg.sender];
     }
     
-    function withdraw(address _topicAddress, address _sender, uint _amount) external returns(uint){// returns user balance
+    function withdraw(address _sender, uint _amount) external returns(uint){// returns user balance
         require(userBalance[msg.sender] >= _amount, "can't withdraw more then you have");
-        IERC20 tokenContract = IERC20(topicAddress);
-        tokenContract.transferFrom(address(this),_sender,_amount);
+       
         userBalance[msg.sender] -= _amount;
+        token.approve(address(this), _amount);
+        token.transferFrom(address(this),_sender, _amount);
         return userBalance[msg.sender];
     }
 
@@ -48,7 +55,7 @@ contract Proposal {
     }
 
     function getDescription() view public returns (string memory){//returns description
-        require (msg.sender == creator, "must be creator to set description");
+       
         return description;
     }
 
@@ -58,7 +65,6 @@ contract Proposal {
     }
 
     function getName() view public returns (string memory){// returns name
-        require (msg.sender == creator, "must be creator to set description");
         return title;
     }
 

@@ -156,12 +156,12 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - the caller must have allowance for ``from``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
-        address spender = _msgSender();
-        _spendAllowance(from, spender, amount);
-        _transfer(from, to, amount);
-        return true;
-    }
+    //function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
+    //    address spender = _msgSender();
+    //   _spendAllowance(from, spender, amount);
+    //    _transfer(from, to, amount);
+    //    return true;
+    //}
 
     /**
      * @dev Atomically increases the allowance granted to `spender` by the caller.
