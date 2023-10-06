@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 
 import "contracts/Proposal.sol";
 import "contracts/Imports.sol";
@@ -51,12 +51,14 @@ contract Topic {
     }
 
     function sendToProposal(address _proposalAddr,uint _amount) proposalExists(_proposalAddr) public {
-        require(token.balanceOf(msg.sender) >= _amount, "can't give more than ya have");
+        require(token.balanceOf(msg.sender) >= _amount, "cant give more than ya have");
         token.approve(msg.sender, _amount);
         //token.increaseAllowance(_proposalAddr,_amount);//get rid of one of these, approve isn't working as it should
         //token.decreaseAllowance(payable(msg.sender), 5);
+        //token.Transfer(from, to, value);
         
-        token.transferFrom(payable(msg.sender), _proposalAddr, _amount);
+        token.transferFrom(msg.sender, _proposalAddr, _amount);
+       
         emit transferSent(msg.sender, _proposalAddr, _amount);
         console.log("sent token: ");
         console.log(_amount);
@@ -69,21 +71,23 @@ contract Topic {
     function getTotalSupply() public view returns(uint){
         return token.totalSupply();
     }
-    function withdrawFromProposal(address _proposalAddr,uint _amount) proposalExists(_proposalAddr) public payable {
+    function withdrawFromProposal(address _proposalAddr,uint _amount) proposalExists(_proposalAddr) public {
         
-        //require(proposals[_proposalAddr].getUserBalence() > 0, "can't take nothing");
+        //require(proposals[_proposalAddr].getUserBalence() > 0, "cant take nothing");
         token.approve(_proposalAddr, _amount);
-        proposals[_proposalAddr].withdraw(payable(msg.sender),_amount);
+        proposals[_proposalAddr].withdraw(msg.sender,_amount);
         //token.decreaseAllowance(_proposalAddr, _amount);
         //token.increaseAllowance(payable(msg.sender), _amount);
         emit withdrawFromProposalOnTopicSide(msg.sender,_proposalAddr,_amount);
     }
 
     function requestToken() isNewVoter public {
-        listOfVoters.push(payable(msg.sender));
-        token.approve(payable(msg.sender), 5);
-        //token.increaseAllowance(payable(msg.sender), 5);
-        token.mint(msg.sender,5 * 10**uint(token.decimals()));
+        listOfVoters.push(msg.sender);
+        token.approve(msg.sender, 5);
+        token.increaseAllowance(msg.sender, 5);
+       
+        token.mint(msg.sender,5);//* 10**uint(token.decimals()));
+        //token.transfer(msg.sender, 5*10**uint(token.decimals()));
     }
 
     function getTokenAddress() public view  returns (TopicToken){
