@@ -1,3 +1,10 @@
+//we change allowance and transfer things back and forth with different values to see if we can track what is happening.
+//dispite everything, we are unable to make any changes to the users allowance.
+//this inability to increase userr allowance means that the user can not transfer to anything
+//however, we can easily change the topic's allowance. A work around may be to always have the 
+//topic transfer tokens, keeping track of each user. The user wouldn't actually have the tokens at all, just telling the topic when to transfer.
+
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
@@ -50,19 +57,6 @@ contract Topic {
        return proposals[_proposalAddr].getName();
     }
 
-    function sendToProposal(address _proposalAddr,uint _amount) proposalExists(_proposalAddr) public {
-        require(token.balanceOf(msg.sender) >= _amount, "cant give more than ya have");
-        token.approve(msg.sender, _amount);
-        //token.increaseAllowance(_proposalAddr,_amount);//get rid of one of these, approve isn't working as it should
-        //token.decreaseAllowance(payable(msg.sender), 5);
-        //token.Transfer(from, to, value);
-        
-        token.transferFrom(msg.sender, _proposalAddr, _amount);
-       
-        emit transferSent(msg.sender, _proposalAddr, _amount);
-        console.log("sent token: ");
-        console.log(_amount);
-    }
 
     //proposal transaction stuff
     function getUserBalance() public view returns(uint){
@@ -75,20 +69,97 @@ contract Topic {
         
         //require(proposals[_proposalAddr].getUserBalence() > 0, "cant take nothing");
         token.approve(_proposalAddr, _amount);
+        token.approve(msg.sender, _amount);
         proposals[_proposalAddr].withdraw(msg.sender,_amount);
+        
         //token.decreaseAllowance(_proposalAddr, _amount);
         //token.increaseAllowance(payable(msg.sender), _amount);
         emit withdrawFromProposalOnTopicSide(msg.sender,_proposalAddr,_amount);
     }
 
+    function sendToProposal(address _proposalAddr,uint _amount) proposalExists(_proposalAddr) public {
+        require(token.balanceOf(msg.sender) >= _amount, "cant give more than ya have");
+        address senderAddress = address(msg.sender);
+        //token.approve(msg.sender, _amount);
+        
+        //token.increaseAllowance(_proposalAddr,_amount);//get rid of one of these, approve isn't working as it should
+        //token.decreaseAllowance(payable(msg.sender), 5);
+        //token.Transfer(from, to, value);
+        
+        //token.transferFrom(msg.sender, _proposalAddr, _amount);
+        console.log("topic allowance");
+        console.log(token.allowance(address(this), address(this)));
+        
+        console.log("topic balance");
+        console.log(token.balanceOf(address(this)));
+        
+        console.log("user allowance");
+        console.log(token.allowance(senderAddress,senderAddress));
+        
+        console.log("user balance");
+        console.log(token.balanceOf(senderAddress));
+
+        console.log("proposal allowance");
+        console.log(token.allowance(_proposalAddr,_proposalAddr));
+        
+        console.log("proposal balance");
+        console.log(token.balanceOf(_proposalAddr));
+               
+
+        token.approve(senderAddress, 1 * 10**uint(token.decimals()));
+
+        token.approve(topicAddress,2 * 10**uint(token.decimals()));
+        token.approve(address(this),3 * 10**uint(token.decimals()));
+        token.increaseAllowance(senderAddress, 1000);
+        token.increaseAllowance(address(this), 2000);
+        
+        token.approve(senderAddress, 999999);
+        //token.transferFrom(msg.sender, _proposalAddr, 5);
+     //   console.log("usr address: ");
+     //   console.log(msg.sender);
+
+        console.log("AFTER TRANSFER: ----------------------------------------------------------");
+        console.log("topic allowance");
+        console.log(token.allowance(address(this), address(this)));
+        
+        console.log("topic balance");
+        console.log(token.balanceOf(address(this)));
+        
+        console.log("user allowance");
+        console.log(token.allowance(senderAddress,senderAddress));
+        
+        console.log("user balance");
+        console.log(token.balanceOf(senderAddress));
+
+        console.log("proposal allowance");
+        console.log(token.allowance(_proposalAddr,_proposalAddr));
+        
+        console.log("proposal balance");
+        console.log(token.balanceOf(_proposalAddr));
+        emit transferSent(msg.sender, _proposalAddr, _amount);
+        
+        
+    }
+
     function requestToken() isNewVoter public {
         listOfVoters.push(msg.sender);
-        token.approve(msg.sender, 5);
-        token.increaseAllowance(msg.sender, 5);
        
-        token.mint(msg.sender,5);//* 10**uint(token.decimals()));
-        //token.transfer(msg.sender, 5*10**uint(token.decimals()));
+        
+       //token.mint(msg.sender,5);
+        token.mint(address(this), 100 * 10**uint(token.decimals()));//;
+        token.approve(msg.sender, 5 * 10**uint(token.decimals()));
+
+        token.increaseAllowance(msg.sender, 200);
+        token.increaseAllowance(address(this),200);
+
+        token.approve(topicAddress,6 * 10**uint(token.decimals()));
+        token.approve(address(this),7 * 10**uint(token.decimals()));
+        token.transferFrom(address(this),msg.sender, 4 * 10**uint(token.decimals()));
+        //token.transfer(msg.sender, 5 * 10**uint(token.decimals()));
+        
+        
     }
+
 
     function getTokenAddress() public view  returns (TopicToken){
         return token;
