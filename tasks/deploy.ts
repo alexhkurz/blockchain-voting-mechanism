@@ -2,14 +2,13 @@ import { task, types } from 'hardhat/config';
 
 task('deploy', 'Deploys provided contract to specified network')
   .addParam('contract', 'The name of contract', undefined, types.string)
-  .addOptionalParam('arg', 'The constructor argument', undefined)
-  .setAction(async (taskArgs: { contract: string; arg: any }, hre) => {
+  .addOptionalParam('args', 'The constructor arguments', undefined, types.string)
+  .setAction(async (taskArgs: { contract: string; args: string }, hre) => {
     await hre.run('compile');
 
     const CONTRACT = await hre.ethers.getContractFactory(taskArgs.contract);
-    const contract = taskArgs.arg
-      ? await CONTRACT.deploy(taskArgs.arg)
-      : await CONTRACT.deploy();
+    const args = taskArgs.args ? taskArgs.args.split(',') : [];
+    const contract = await CONTRACT.deploy(...args);
 
     await contract.deployed();
 
