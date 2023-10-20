@@ -24,6 +24,7 @@ contract Topic {
     function getUserBalance() public view returns(uint balance){
         return voters[msg.sender].balance;
     }
+    
     function makeNewProposal(string memory _title) public {
         Proposal newProposal = new Proposal(_title);
         proposalAddressFromTitle[_title] = address(newProposal);
